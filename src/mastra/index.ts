@@ -6,11 +6,12 @@ import { codingAgent } from './agents/coding-agent';
 
 
 function decorator(){
-    return (obj: any, attr: any) => {
+    return (obj: any, attr?: any) => {
         Reflect.defineMetadata('mastra:agent', true, obj, attr)
     }
 }
 
+@decorator()
 class Test {
     @decorator()
     test: string = 'test'
