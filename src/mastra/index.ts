@@ -1,10 +1,10 @@
-import 'reflect-metadata';
+import * as REFLECT from 'reflect-metadata';
 import { Mastra } from '@mastra/core/mastra';
 import { LibSQLStore } from '@mastra/libsql';
 import { PinoLogger } from '@mastra/loggers';
 import { codingAgent } from './agents/coding-agent';
 
-
+console.log(REFLECT.default)
 function decorator(){
     return (obj: any, attr?: any) => {
         Reflect.defineMetadata('mastra:agent', true, obj, attr)
@@ -39,4 +39,8 @@ export const mastra = new Mastra({
     name: 'Mastra',
     level: process.env.NODE_ENV === 'production' ? 'info' : 'debug',
   }),
+  bundler: {
+    externals: ["reflect-metadata"],
+    sourcemap: true,
+  },
 });
